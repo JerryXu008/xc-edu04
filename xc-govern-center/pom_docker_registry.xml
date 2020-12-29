@@ -35,7 +35,9 @@
                 <!--docker镜像相关的配置信息-->
                 <configuration>
                     <!--镜像名，这里用工程名-->
-                    <imageName>${project.artifactId}-${project.version}</imageName>
+                    <!--<imageName>${project.artifactId}:${project.version}</imageName>-->
+
+
                     <!--Dockerfile文件所在目录-->
                     <dockerDirectory>${project.basedir}/src/main/resources</dockerDirectory>
                     <!--TAG,这里用工程版本号-->
@@ -44,7 +46,8 @@
                     </imageTags>
                     <registryUrl>127.0.0.1:50000</registryUrl>   <!--docker私有仓库地址-->
                     <pushImage>true</pushImage>
-                    <!--<imageName>127.0.0.1:50000/${project.artifactId}:${project.version}</imageName>-->
+                    <!--不知道为啥 imageName必须加上ip和端口，不加的话就会推送失败-->
+                    <imageName>127.0.0.1:50000/${project.artifactId}:${project.version}</imageName>
                     <!--构建镜像的配置信息-->
                     <resources>
                         <resource>
@@ -55,61 +58,6 @@
                     </resources>
                 </configuration>
             </plugin>
-
-            <!--<plugin>-->
-                <!--<groupId>com.spotify</groupId>-->
-                <!--<artifactId>docker-maven-plugin</artifactId>-->
-                <!--<version>0.4.13</version>-->
-                <!--<configuration>-->
-                    <!--<imageName>${project.artifactId}:${project.version}</imageName>-->
-                    <!--<baseImage>jdk1.8</baseImage>-->
-                    <!--<entryPoint>["java","-jar","/${project.build.finalName}.jar"]</entryPoint>-->
-
-
-                   <!--<resources>-->
-                      <!--<resource>-->
-                        <!--<targetPath>/</targetPath>-->
-                        <!--<directory>${project.build.directory}</directory>-->
-                        <!--<include>${project.artifactId}-${project.version}.jar</include>-->
-                      <!--</resource>-->
-                    <!--</resources>-->
-
-                <!--</configuration>-->
-            <!--</plugin>-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         </plugins>
     </build>
