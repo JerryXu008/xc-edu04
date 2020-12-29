@@ -21,6 +21,7 @@
     </dependencies>
     <build>
         <finalName>${project.artifactId}-${project.version}</finalName>
+
         <plugins>
 
             <!--微服务打成jar包能够运行需要在pom中安装这个插件：-->
@@ -33,9 +34,12 @@
 
 
             <plugin>
+
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>1.0.0</version>
+
+                <!--此配置成功测试 暂时屏蔽-->
                 <!--docker镜像相关的 配置 信息-->
                 <configuration>
                     <!--镜像名，这里用工程名-->

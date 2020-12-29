@@ -26,6 +26,8 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
+
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
@@ -33,26 +35,82 @@
                 <!--docker镜像相关的配置信息-->
                 <configuration>
                     <!--镜像名，这里用工程名-->
-                    <imageName>${project.artifactId}-${project.version}</imageName>
+                    <!--<imageName>${project.artifactId}-${project.version}</imageName>-->
                     <!--Dockerfile文件所在目录-->
                     <dockerDirectory>${project.basedir}/src/main/resources</dockerDirectory>
                     <!--TAG,这里用工程版本号-->
                     <imageTags>
                         <imageTag>${project.version}</imageTag>
                     </imageTags>
-                    <registryUrl>192.168.101.64:5000</registryUrl>
+                    <registryUrl>127.0.0.1:50000</registryUrl>   <!--docker私有仓库地址-->
                     <pushImage>true</pushImage>
-                    <imageName>192.168.101.64:5000/${project.artifactId}:${project.version}</imageName>
+                    <imageName>127.0.0.1:50000/${project.artifactId}:${project.version}</imageName>
                     <!--构建镜像的配置信息-->
                     <resources>
                         <resource>
-                            <targetPath>/</targetPath>
+                            <targetPath>/</targetPath> <!--容器中的根路径，如果改成/home ，容器中根目录为home-->
                             <directory>${project.build.directory}</directory>
                             <include>${project.artifactId}-${project.version}.jar</include>
                         </resource>
                     </resources>
                 </configuration>
             </plugin>
+
+            <!--<plugin>-->
+                <!--<groupId>com.spotify</groupId>-->
+                <!--<artifactId>docker-maven-plugin</artifactId>-->
+                <!--<version>0.4.13</version>-->
+                <!--<configuration>-->
+                    <!--<imageName>${project.artifactId}:${project.version}</imageName>-->
+                    <!--<baseImage>jdk1.8</baseImage>-->
+                    <!--<entryPoint>["java","-jar","/${project.build.finalName}.jar"]</entryPoint>-->
+
+
+                   <!--<resources>-->
+                      <!--<resource>-->
+                        <!--<targetPath>/</targetPath>-->
+                        <!--<directory>${project.build.directory}</directory>-->
+                        <!--<include>${project.artifactId}-${project.version}.jar</include>-->
+                      <!--</resource>-->
+                    <!--</resources>-->
+
+                <!--</configuration>-->
+            <!--</plugin>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         </plugins>
     </build>
 </project>
